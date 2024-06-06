@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1069437766718",
+    "project_id": "soco-main",
+    "storage_bucket": "soco-main.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069437766718:android:81b03d2657e052bd06d56f",
+        "android_client_info": {
+          "package_name": "com.example.myapplication_soco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069437766718-ut1agujd7kei55tia4005ak3a4eouo1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6cmr7uX8HfdBXPv6L4ZAjYyAH3zdAVYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069437766718-ut1agujd7kei55tia4005ak3a4eouo1n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1069437766718-lpvobmfu0fdb2t5k8btd3h2ib39f4eff.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.onceLabs.soco"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
