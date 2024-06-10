@@ -4,8 +4,6 @@ plugins {
 
 }
 
-
-
 android {
     namespace = "com.example.myapplication_soco"
     compileSdk = 34
@@ -43,7 +41,15 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    // Import the BoM for the Firebase platform
+
+    implementation("com.google.firebase:firebase-auth:latest_version")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth")
 }
