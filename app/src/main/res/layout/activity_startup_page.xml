@@ -8,13 +8,13 @@
     tools:context=".startup_page">
 
     <Button
-        android:id="@+id/button_2"
+        android:id="@+id/signInBtn"
         android:layout_width="388dp"
         android:layout_height="55dp"
         android:text="Sign In"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_1"
+        app:layout_constraintTop_toBottomOf="@+id/registerButton"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
@@ -40,12 +40,12 @@
         android:layout_alignParentBottom="true"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/button_1"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.141" />
+        app:layout_constraintVertical_bias="0.433" />
 
     <TextView
         android:id="@+id/textView_1"
@@ -65,10 +65,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.488" />
+
 
     <TextView
         android:id="@+id/TextView_2"
@@ -87,16 +87,14 @@
         android:textColor="#808080"
         android:textSize="24sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/button_1"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_1"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.982" />
 
     <Button
-        android:id="@+id/button_1"
+        android:id="@+id/registerButton"
         android:layout_width="388dp"
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
@@ -104,11 +102,11 @@
         android:layout_marginBottom="82dp"
         android:paddingBottom="8dp"
         android:text="Register"
-        app:layout_constraintBottom_toBottomOf="@+id/button_2"
+        app:layout_constraintBottom_toBottomOf="@+id/signInBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_2"
+        app:layout_constraintTop_toTopOf="@+id/signInBtn"
         app:layout_constraintVertical_bias="0.914" />
 
 

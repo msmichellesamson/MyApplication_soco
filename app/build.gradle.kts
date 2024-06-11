@@ -34,7 +34,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -42,25 +41,33 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.crashlytics.buildtools)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    // Import the BoM for the Firebase platform
 
-    implementation("com.google.firebase:firebase-auth:latest_version")
+    // Firebase BoM (Bill of Materials) - no need to specify versions for Firebase libraries
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
-    // Add the dependency for the Firebase Authentication library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation("com.google.firebase:firebase-auth")
-    // FirebaseUI for Firebase Realtime Database
-    implementation("com.firebaseui:firebase-ui-database:8.0.2")
 
-    // FirebaseUI for Cloud Firestore
+    // Firebase libraries
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    // FirebaseUI libraries
+    implementation("com.firebaseui:firebase-ui-auth:8.0.2")
     implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 
-    // FirebaseUI for Firebase Auth
-    implementation("com.firebaseui:firebase-ui-auth:8.0.2")
+//    // CameraX libraries
+//    implementation("androidx.camera:camera-camera2:1.3.3")
+//    implementation("androidx.camera:camera-lifecycle:1.3.3")
+//    implementation("androidx.camera:camera-view:1.3.3")
+//
+//    // Guava library
+//    implementation("com.google.guava:guava:33.2.1-android")
+//
+//    // Example library with exclusion (assuming you need it, otherwise remove)
+//    implementation("com.example:some-library:1.0.0") {
+//        exclude(group = "com.google.firebase.crashlytics.buildtools.reloc.com.google.common", module = "guava")
+//    }
 
-    // FirebaseUI for Cloud Storage
-    implementation("com.firebaseui:firebase-ui-storage:8.0.2")
 }

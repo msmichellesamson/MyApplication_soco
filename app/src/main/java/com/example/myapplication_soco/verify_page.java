@@ -4,9 +4,7 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Button;
@@ -28,9 +26,7 @@ public class verify_page extends AppCompatActivity {
     FirebaseAuth mAuth;
     String mVerificationId;
     PhoneAuthProvider.ForceResendingToken mResendToken;
-
     String firstName, lastName;
-
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +37,15 @@ public class verify_page extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        otpInput = findViewById(R.id.editTextText2); // Assume you have an EditText for OTP input
-        confirmButton = findViewById(R.id.button5);
+        otpInput = findViewById(R.id.otpInput); // Assume you have an EditText for OTP input
+        confirmButton = findViewById(R.id.confirmButton);
 
         // Get verificationId and resendToken from the intent
         Intent intent = getIntent();
         mVerificationId = intent.getStringExtra("verificationId");
         mResendToken = intent.getParcelableExtra("resendToken");
         firstName = intent.getStringExtra("firstName");
-        lastName = intent.getStringExtra("firstName");
+        lastName = intent.getStringExtra("lastName");
 
 
         // Confirm button click listener
@@ -77,8 +73,6 @@ public class verify_page extends AppCompatActivity {
                         // Navigate to main activity or home screen
                         String uid = mAuth.getCurrentUser().getUid();
                         checkIfUserExists(uid);
-                        startActivity(new Intent(verify_page.this, selfie_page.class));
-                        finish();
                     } else {
                         // Sign in failed, display a message and update the UI
                         Log.w("TAG", "signInWithCredential:failure", task.getException());
@@ -93,10 +87,10 @@ public class verify_page extends AppCompatActivity {
                         if (!task.getResult().exists()) {
                             addUserToFirestore(uid);
                         } else {
-                            Log.d("TAG", "User already exists in the database.");
+                            Log.d("TAG", "User already exists in the database."+ uid);
                         }
                         // Navigate to main activity or home screen
-                        startActivity(new Intent(verify_page.this, selfie_page.class));
+                        startActivity(new Intent(verify_page.this, home_page.class));
                         finish();
                     } else {
                         Log.w("TAG", "Error checking if user exists", task.getException());
@@ -113,8 +107,6 @@ public class verify_page extends AppCompatActivity {
         user.put("firstName", firstName);
         user.put("lastName", lastName);
 
-        // Add more user details here if necessary (e.g., first name, last name)
-
         db.collection("profiles").document(uid)
                 .set(user)
                 .addOnSuccessListener(aVoid -> {
@@ -126,19 +118,4 @@ public class verify_page extends AppCompatActivity {
                 });
     }
 
-
-    public static class verify_selife_page extends AppCompatActivity {
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            EdgeToEdge.enable(this);
-            setContentView(R.layout.activity_verify_selfie_page);
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
-        }
-    }
 }

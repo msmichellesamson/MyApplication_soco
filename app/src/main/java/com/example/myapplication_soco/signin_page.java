@@ -19,13 +19,12 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.concurrent.TimeUnit;
 public class signin_page extends AppCompatActivity {
     EditText phoneNumberInput;
-    Button loginButton, registerButton;
+    Button signInButton, registerButton;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
@@ -39,11 +38,10 @@ public class signin_page extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         phoneNumberInput = findViewById(R.id.editTextText);
-        loginButton = findViewById(R.id.button3);
-        registerButton = findViewById(R.id.button4);
+        signInButton = findViewById(R.id.signInBtn);
+        registerButton = findViewById(R.id.registerBtn);
 
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phoneNumber = phoneNumberInput.getText().toString().trim();
@@ -58,7 +56,6 @@ public class signin_page extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirect to the register page
                 Intent intent = new Intent(signin_page.this, register_page.class);
                 startActivity(intent);
             }
