@@ -90,12 +90,17 @@ public class register_page extends AppCompatActivity {
 
             @Override
             public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
+                String firstName = firstNameInput.getText().toString();
+                String lastName = lastNameInput.getText().toString();
                 Log.d("TAG", "onCodeSent:" + verificationId);
                 mVerificationId = verificationId;
                 mResendToken = token;
                 Intent intent = new Intent(register_page.this, verify_page.class);
                 intent.putExtra("verificationId", mVerificationId);
                 intent.putExtra("resendToken", mResendToken);
+                intent.putExtra("firstName", firstName);
+                intent.putExtra("lastName", lastName);
+
                 startActivity(intent);
             }
         };

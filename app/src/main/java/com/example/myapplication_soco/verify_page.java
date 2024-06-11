@@ -16,6 +16,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class verify_page extends AppCompatActivity {
 
     EditText otpInput;
@@ -23,6 +28,10 @@ public class verify_page extends AppCompatActivity {
     FirebaseAuth mAuth;
     String mVerificationId;
     PhoneAuthProvider.ForceResendingToken mResendToken;
+
+    String firstName, lastName;
+
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +39,7 @@ public class verify_page extends AppCompatActivity {
         setContentView(R.layout.activity_verify_page);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         otpInput = findViewById(R.id.editTextText2); // Assume you have an EditText for OTP input
         confirmButton = findViewById(R.id.button5);
@@ -38,6 +48,9 @@ public class verify_page extends AppCompatActivity {
         Intent intent = getIntent();
         mVerificationId = intent.getStringExtra("verificationId");
         mResendToken = intent.getParcelableExtra("resendToken");
+        firstName = intent.getStringExtra("firstName");
+        lastName = intent.getStringExtra("firstName");
+
 
         // Confirm button click listener
         confirmButton.setOnClickListener(v -> {
@@ -62,6 +75,8 @@ public class verify_page extends AppCompatActivity {
                         Log.d("TAG", "signInWithCredential:success");
                         Toast.makeText(verify_page.this, "Verification successful.", Toast.LENGTH_LONG).show();
                         // Navigate to main activity or home screen
+                        String uid = mAuth.getCurrentUser().getUid();
+                        checkIfUserExists(uid);
                         startActivity(new Intent(verify_page.this, selfie_page.class));
                         finish();
                     } else {
@@ -71,6 +86,46 @@ public class verify_page extends AppCompatActivity {
                     }
                 });
     }
+    private void checkIfUserExists(String uid) {
+        db.collection("profiles").document(uid).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (!task.getResult().exists()) {
+                            addUserToFirestore(uid);
+                        } else {
+                            Log.d("TAG", "User already exists in the database.");
+                        }
+                        // Navigate to main activity or home screen
+                        startActivity(new Intent(verify_page.this, selfie_page.class));
+                        finish();
+                    } else {
+                        Log.w("TAG", "Error checking if user exists", task.getException());
+                        Toast.makeText(verify_page.this, "Error checking user data.", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+    private void addUserToFirestore(String uid) {
+        String phoneNumber = mAuth.getCurrentUser().getPhoneNumber();
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("Document ID", uid);
+        user.put("phoneNumber", phoneNumber);
+        user.put("firstName", firstName);
+        user.put("lastName", lastName);
+
+        // Add more user details here if necessary (e.g., first name, last name)
+
+        db.collection("profiles").document(uid)
+                .set(user)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("TAG", "DocumentSnapshot successfully written!");
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("TAG", "Error writing document", e);
+                    Toast.makeText(verify_page.this, "Error saving user data.", Toast.LENGTH_LONG).show();
+                });
+    }
+
 
     public static class verify_selife_page extends AppCompatActivity {
 
