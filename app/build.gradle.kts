@@ -34,6 +34,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.camera.camera2)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.view)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -45,29 +48,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    // Guava library for ListenableFuture
+    implementation(libs.guava)
+    implementation(libs.play.services.auth)
 
-    // Firebase BoM (Bill of Materials) - no need to specify versions for Firebase libraries
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
 
     // Firebase libraries
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
 
-    // FirebaseUI libraries
-    implementation("com.firebaseui:firebase-ui-auth:8.0.2")
-    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 
-//    // CameraX libraries
-//    implementation("androidx.camera:camera-camera2:1.3.3")
-//    implementation("androidx.camera:camera-lifecycle:1.3.3")
-//    implementation("androidx.camera:camera-view:1.3.3")
-//
-//    // Guava library
-//    implementation("com.google.guava:guava:33.2.1-android")
-//
-//    // Example library with exclusion (assuming you need it, otherwise remove)
-//    implementation("com.example:some-library:1.0.0") {
-//        exclude(group = "com.google.firebase.crashlytics.buildtools.reloc.com.google.common", module = "guava")
-//    }
 
 }

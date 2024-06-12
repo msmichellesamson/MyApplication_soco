@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">MyApplication_soco</string>
+    <string name="soco_logo">Soco Logo</string>
+    <string name="start_up_image_desc">Image of people hanging out</string>
+    <string name="start_connecting">Start Connecting</string>
+    <string name="start_text">Meet, Coordinate and Hang with the people around you</string>
+    <string name="register">Register</string>
+    <string name="sign_in">Sign In</string>
+    <string name="reg_text">Start connecting with the people around you</string>
+    <string name="first_name">first name</string>
+    <string name="last_name">last name</string>
+    <string name="phone_number">phone number</string>
+    <string name="phone_number_hint">Phone number without +1</string>
+    <string name="phone_number_disclaimer">Your phone number is used to verify your account and is only shared with contacts you approve</string>
+    <string name="sign_in_hint">Have an account ?</string>
+    <string name="tc_link">By registering, you agree to the terms and conditions and privacy policy.</string>
+
+
+
+
+
 </resources>

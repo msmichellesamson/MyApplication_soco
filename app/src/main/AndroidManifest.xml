@@ -4,15 +4,17 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label=""
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/soco_logo"
+        android:label="soco"
+        android:roundIcon="@drawable/soco_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication_soco"
         tools:targetApi="34">
@@ -28,6 +30,7 @@
         <activity android:name=".signin_page" android:exported="true" />
         <activity android:name=".register_page" android:exported="true" />
         <activity android:name=".home_page" android:exported="true" />
+        <activity android:name=".selfie_page" android:exported="true" />
 
 
     </application>

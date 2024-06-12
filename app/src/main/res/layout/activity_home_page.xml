@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.246" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/viewLogo"
         android:layout_width="336dp"
         android:layout_height="285dp"
         android:adjustViewBounds="true"

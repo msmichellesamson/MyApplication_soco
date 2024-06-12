@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,8 +72,8 @@ public class verify_page extends AppCompatActivity {
                         Log.d("TAG", "signInWithCredential:success");
                         Toast.makeText(verify_page.this, "Verification successful.", Toast.LENGTH_LONG).show();
                         // Navigate to main activity or home screen
-                        String uid = mAuth.getCurrentUser().getUid();
-                        checkIfUserExists(uid);
+                        String phoneNumber = mAuth.getCurrentUser().getPhoneNumber();
+                        checkUserExists(phoneNumber);
                     } else {
                         // Sign in failed, display a message and update the UI
                         Log.w("TAG", "signInWithCredential:failure", task.getException());
@@ -80,24 +81,26 @@ public class verify_page extends AppCompatActivity {
                     }
                 });
     }
-    private void checkIfUserExists(String uid) {
-        db.collection("profiles").document(uid).get()
+
+    private void checkUserExists(String phoneNumber) {
+        db.collection("profiles")
+                .whereEqualTo("phoneNumber", phoneNumber)
+                .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        if (!task.getResult().exists()) {
-                            addUserToFirestore(uid);
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (!querySnapshot.isEmpty()) {
+                            Log.d("TAG", "User already exists in the database.");
                         } else {
-                            Log.d("TAG", "User already exists in the database."+ uid);
+                            addUserToFirestore(phoneNumber);
                         }
-                        // Navigate to main activity or home screen
-                        startActivity(new Intent(verify_page.this, home_page.class));
-                        finish();
+                        startActivity(new Intent(verify_page.this, selfie_page.class));
                     } else {
-                        Log.w("TAG", "Error checking if user exists", task.getException());
-                        Toast.makeText(verify_page.this, "Error checking user data.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(verify_page.this, "Error checking user.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
     private void addUserToFirestore(String uid) {
         String phoneNumber = mAuth.getCurrentUser().getPhoneNumber();
 
