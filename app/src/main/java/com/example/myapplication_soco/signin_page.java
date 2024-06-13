@@ -40,7 +40,6 @@ public class signin_page extends AppCompatActivity {
         phoneNumberInput = findViewById(R.id.editTextText);
         signInButton = findViewById(R.id.signInBtn);
         registerButton = findViewById(R.id.registerBtn);
-
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +51,6 @@ public class signin_page extends AppCompatActivity {
                 checkUserExists(phoneNumber);
             }
         });
-
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +77,6 @@ public class signin_page extends AppCompatActivity {
                     }
                 });
     }
-
     private void startPhoneNumberVerification(String phoneNumber) {
         PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -87,7 +84,6 @@ public class signin_page extends AppCompatActivity {
                 // Auto-retrieval or instant validation has succeeded
                 Log.d("TAG", "onVerificationCompleted:" + credential);
             }
-
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
                 Log.w("TAG", "onVerificationFailed", e);
@@ -97,19 +93,17 @@ public class signin_page extends AppCompatActivity {
                     Toast.makeText(signin_page.this, "Too many attempts.", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
                 Log.d("TAG", "onCodeSent:" + verificationId);
                 mVerificationId = verificationId;
                 mResendToken = token;
-                Intent intent = new Intent(signin_page.this, verify_page.class);
+                Intent intent = new Intent(signin_page.this, verify_signin_page.class);
                 intent.putExtra("verificationId", verificationId);
                 intent.putExtra("phoneNumber", phoneNumber);
                 startActivity(intent);
             }
         };
-
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
                 .setPhoneNumber(phoneNumber)       // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit

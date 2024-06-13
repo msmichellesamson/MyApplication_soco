@@ -45,12 +45,16 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.messaging)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     // Guava library for ListenableFuture
     implementation(libs.guava)
     implementation(libs.play.services.auth)
+    implementation(libs.glide)
+    implementation(libs.glide.compiler)
 
 
     // Firebase libraries

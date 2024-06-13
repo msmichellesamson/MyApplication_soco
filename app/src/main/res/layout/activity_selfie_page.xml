@@ -5,19 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".selfie_page">
 
     <Button
         android:id="@+id/camera_capture_button"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="50dp"
+        android:layout_width="182dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/button_rounded"
         android:elevation="2dp"
         android:scaleType="fitCenter"
         android:text="Capture Photo"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -35,11 +36,31 @@
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="240dp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/flash_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/camera_capture_button"
+        android:layout_centerHorizontal="true"
+        android:text="Flash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307" />
+
+    <FrameLayout
+        android:id="@+id/flash_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

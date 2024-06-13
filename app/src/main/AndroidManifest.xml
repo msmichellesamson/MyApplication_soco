@@ -2,11 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.location.gps" />
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+    </queries>
+
 
     <application
         android:allowBackup="true"
@@ -18,20 +32,49 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication_soco"
         tools:targetApi="34">
+
         <activity
-            android:name=".startup_page"
-            android:exported="true">
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".verify_page" android:exported="true" />
+
+
+        <activity android:name=".startup_page" android:exported="true" />
+        <activity android:name=".verify_registration_page" android:exported="true" />
+        <activity android:name=".verify_signin_page" android:exported="true" />
         <activity android:name=".signin_page" android:exported="true" />
         <activity android:name=".register_page" android:exported="true" />
         <activity android:name=".home_page" android:exported="true" />
         <activity android:name=".selfie_page" android:exported="true" />
+        <activity android:name=".check_selfie_page" android:exported="true" />
+        <activity android:name=".settings_page" android:exported="true" />
 
+        <!-- Firebase Messaging Service -->
+<!--        <service-->
+<!--            android:name=".MyFirebaseMessagingService"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+<!--        &lt;!&ndash; Firebase configurations &ndash;&gt;-->
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+<!--            android:value="@string/default_notification_channel_id" />-->
+
+        <!-- Optional: Define dataExtractionRules and fullBackupContent -->
+        <meta-data
+            android:name="android.app.backup.full"
+            android:resource="@xml/backup_rules" />
+        <meta-data
+            android:name="android.app.dat"
+            android:resource="@xml/data_extraction_rules" />
 
     </application>
 

@@ -13,10 +13,11 @@
     <string name="phone_number_hint">Phone number without +1</string>
     <string name="phone_number_disclaimer">Your phone number is used to verify your account and is only shared with contacts you approve</string>
     <string name="sign_in_hint">Have an account ?</string>
+    <string name="verify_your_identity">Verify Your Identity</string>
+    <string name="code">Enter the code we sent to your phone.</string>
+    <string name="enter_verification_code">Enter Verification Code</string>
+    <string name="confirm">Confirm</string>
+    <string name="selfie_preview">selfie preview</string>
     <string name="tc_link">By registering, you agree to the terms and conditions and privacy policy.</string>
-
-
-
-
 
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".verify_page">
+    tools:context=".verify_signin_page">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:fontFamily="sans-serif"
-                android:text="Verify Your Identity"
+                android:text="@string/verify_your_identity"
                 android:textColor="@color/black"
                 android:textSize="37sp"
                 android:textStyle="bold"
@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Enter the code we sent to your phone"
+                android:text="@string/code"
                 android:textColor="#808080"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="Enter Verification Code"
+                android:hint="@string/enter_verification_code"
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,11 +63,11 @@
 
             <Button
                 android:id="@+id/confirmButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="298dp"
+                android:layout_height="58dp"
                 android:layout_marginTop="44dp"
                 android:background="@drawable/button_rounded"
-                android:text="Confirm"
+                android:text="@string/confirm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/otpInput"

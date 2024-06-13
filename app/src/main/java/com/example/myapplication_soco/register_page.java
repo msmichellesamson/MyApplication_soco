@@ -73,7 +73,6 @@ public class register_page extends AppCompatActivity {
             startActivity(new Intent(register_page.this, signin_page.class));
         });
     }
-
     private void setTermsAndConditions() {
         Log.i(TAG, "Setting terms and conditions at " + getCurrentTimestamp());
         String text = "By registering, you agree to the terms and conditions and privacy policy.";
@@ -84,7 +83,6 @@ public class register_page extends AppCompatActivity {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://thesocoapp.com/terms-conditions/"));
                 startActivity(browserIntent);
             }
-
             @Override
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
@@ -97,7 +95,6 @@ public class register_page extends AppCompatActivity {
         textViewTerms.setText(ss);
         textViewTerms.setMovementMethod(LinkMovementMethod.getInstance());
     }
-
     private void checkIfUserExists(String phoneNumber) {
         Log.i(TAG, "Checking if user exists for phone number: " + phoneNumber + " at " + getCurrentTimestamp());
         db.collection("profiles")
@@ -119,7 +116,6 @@ public class register_page extends AppCompatActivity {
                     }
                 });
     }
-
     private void startPhoneNumberVerification(String phoneNumber) {
         Log.i(TAG, "Starting phone number verification for: " + phoneNumber + " at " + getCurrentTimestamp());
         PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -128,7 +124,6 @@ public class register_page extends AppCompatActivity {
                 // This method is triggered in some cases without the need for manual code entry
                 Log.d(TAG, "onVerificationCompleted:" + credential + " at " + getCurrentTimestamp());
             }
-
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
                 Log.w(TAG, "onVerificationFailed at " + getCurrentTimestamp(), e);
@@ -138,7 +133,6 @@ public class register_page extends AppCompatActivity {
                     Toast.makeText(register_page.this, "Malicious activity detected. Try again later.", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
                 Log.d(TAG, "onCodeSent:" + verificationId + " at " + getCurrentTimestamp());
@@ -148,7 +142,7 @@ public class register_page extends AppCompatActivity {
                 mVerificationId = verificationId;
                 mResendToken = token;
 
-                Intent intent = new Intent(register_page.this, verify_page.class);
+                Intent intent = new Intent(register_page.this, verify_registration_page.class);
                 intent.putExtra("verificationId", mVerificationId);
                 intent.putExtra("resendToken", mResendToken);
                 intent.putExtra("firstName", firstName);
@@ -156,7 +150,6 @@ public class register_page extends AppCompatActivity {
                 startActivity(intent);
             }
         };
-
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
                 .setPhoneNumber(phoneNumber)
                 .setTimeout(60L, TimeUnit.SECONDS)
@@ -165,7 +158,6 @@ public class register_page extends AppCompatActivity {
                 .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
-
     private String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         return sdf.format(new Date());
